@@ -7,7 +7,7 @@ const myAppConfig = new AppConfig(["store_write"]);
 
 // if(process.env.NODE_ENV === "development") 
 // myAppConfig.appDomain = "http://localhost:3000";
-myAppConfig.appDomain = "https://knox-notes.netlify.app";
+myAppConfig.appDomain = "https://knox-notes.vercel.app";
 
 // else myAppConfig.appDomain = "https://drabkirn.cdadityang.xyz/knox";
 
