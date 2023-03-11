@@ -13,32 +13,13 @@ import history from './components/Shared/history';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-if(process.env.NODE_ENV === "production") {
-  // Matomo/Piwik Setup
-  const piwik = PiwikReactRouter({
-    url: 'https://analytics.cdadityang.xyz',
-    siteId: 3
-  });
-
-  ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={ store }>
-        <Router history={piwik.connectToHistory(history)} basename={process.env.PUBLIC_URL}>
-          <App />
-        </Router>
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-} else {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={ store }>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-          <App />
-        </BrowserRouter>
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
