@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Home from './Home/Home';
 import Login from './Login/Login';
@@ -37,14 +37,14 @@ function App() {
   return (
     <>
     <Navbar/>
-    <Switch>
+    <Routes>
       <Route exact path="/login" component={ Login } />
       <Route exact path="/dash" component={ Dash } />
       <Route exact path="/show/:id" component={ Show } />
       <Route exact path="/edit/:id" component={ Edit } />
       <Route exact path="/new" component={ New } />
       <Route path="/" component={ Home } />
-    </Switch>
+    </Routes>
     {/* <Footer/> */}
     </>
   );
