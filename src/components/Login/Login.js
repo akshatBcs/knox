@@ -26,7 +26,7 @@ function Login() {
     return <Redirect to="/dash" />;
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     // Deprecated
@@ -50,7 +50,7 @@ function Login() {
     };
     // console.log(authOptions)
 
-    loginPopup(authOptions);
+    await loginPopup(authOptions);
   };
 
   return (
