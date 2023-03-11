@@ -6,8 +6,8 @@ import generateUUID from './generateUUID';
 const myAppConfig = new AppConfig(["store_write"]);
 
 // if(process.env.NODE_ENV === "development") 
-myAppConfig.appDomain = "http://localhost:3000";
-// myAppConfig.appDomain = "https://knox-notes.netlify.app";
+// myAppConfig.appDomain = "http://localhost:3000";
+myAppConfig.appDomain = "https://knox-notes.netlify.app";
 
 // else myAppConfig.appDomain = "https://drabkirn.cdadityang.xyz/knox";
 
