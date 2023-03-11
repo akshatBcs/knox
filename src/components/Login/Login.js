@@ -33,11 +33,11 @@ function Login() {
     // userSession.redirectToSignIn();
 
     const authOptions = {
-      redirectTo: '/dash',
+      // redirectTo: '/dash',
       onFinish: (authData) => {
         window.location = 'dash';
-        // let userData = userSession.loadUserData();
-        // console.log(userData)
+        let userData = userSession.loadUserData();
+        console.log(userData)
       },
       onCancel: () => {
         setLoading(false);
@@ -48,7 +48,7 @@ function Login() {
         icon: `${appConfig.redirectURI()}/icons/logo-180x180.png`,
       },
     };
-    console.log(authOptions)
+    // console.log(authOptions)
 
     loginPopup(authOptions);
   };
