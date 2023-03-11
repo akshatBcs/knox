@@ -117,12 +117,12 @@ function Dash() {
     <>
       <section className="container center-align mt-3rem">
         <div>
-          <h2>Dashboard</h2>
+          {/* <h2>Dashboard</h2> */}
         </div>
 
         <div>
           <img src={ userAvatarURL } alt="my avatar" className="profile-avatar" />
-          <p className="fs-1-2 bold">Welcome, { usernameorFullName ? usernameorFullName : 'Baaaaaa' }!</p>
+          <p className="fs-1-2 bold">Welcome, { usernameorFullName ? usernameorFullName : 'User' }!</p>
           <a href="https://browser.blockstack.org/profiles" target="_blank" rel="noopener noreferrer" className="btn forest-green-btn">
             Edit Profile
             <i className="material-icons right">edit</i>
@@ -148,8 +148,8 @@ function Dash() {
                 notesData.length === 0 ? (
                   <div className="row">
                     <div className="col m6 offset-m3 s12">
-                      <p className="fs-1-1">It's lonely over here, start writing a new note by click on + icon from bottom right...</p>
-                      <img src="/knox/images/illustrations/lonely.svg" alt="lonely illustration" className="responsive-img" />
+                      <p className="fs-1-1">start writing a new note by click on + icon from bottom right...</p>
+                      <img src="/images/illustrations/lonely.svg" alt="lonely illustration" className="responsive-img" />
                     </div>
                   </div>
                 ) : (<></>)
@@ -203,7 +203,7 @@ function Dash() {
                     );
                   })
                 }
-
+{/* check for possible redundancy source */}
                 {
                   notesData && tagNotes && tagNotes.map((note, index) => {
                     return(

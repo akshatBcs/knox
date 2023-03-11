@@ -76,7 +76,7 @@ function Show(props) {
   };
 
   const handleNoteDelete = (deletedNote) => {
-    const confirmDeletion = window.confirm("Are ou sure, you want to delete this note, it's irreversible?");
+    const confirmDeletion = window.confirm("Are you sure, you want to delete this note? it's irreversible!");
     if(confirmDeletion) {
       const modifiedNotesData = notesData.filter((note) => note.id !== deletedNote.id);
 
@@ -84,7 +84,7 @@ function Show(props) {
 
       dispatch(postNotebookFile(userSession, modifiedNotesData));
       dispatch(postTagsFile(userSession, tagsData));
-      window.location = appConfig.redirectURI();
+      window.location = 'dash';
     }
   };
 
@@ -134,6 +134,10 @@ function Show(props) {
                 <p>Updated at: { note.updated_at }</p>
               </div>
 
+              <div className="editor-preview editor-preview-side editor-preview-active-side custom-editor-preview">
+                <Highlight content={ noteContentRender }></Highlight>
+              </div>
+
               <div className="mt-2rem center-align">
                 <Link to={ "/edit/" + note.id } className="btn forest-green-btn edit-btn">
                   Edit
@@ -149,11 +153,8 @@ function Show(props) {
                 </Link>
               </div>
 
-              <div className="editor-preview editor-preview-side editor-preview-active-side custom-editor-preview">
-                <Highlight content={ noteContentRender }></Highlight>
-              </div>
 
-              <div className="mt-2rem center-align">
+              {/* <div className="mt-2rem center-align">
                 <Link to={ "/edit/" + note.id } className="btn forest-green-btn">
                   Edit
                   <i className="material-icons right">edit</i>
@@ -166,7 +167,7 @@ function Show(props) {
                   Back
                   <i className="material-icons right">keyboard_backspace</i>
                 </Link>
-              </div>
+              </div> */}
             </>
           )
         }

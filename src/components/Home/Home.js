@@ -16,7 +16,7 @@ function Home() {
           <h1>knox</h1>
         </div>
         <div>
-          <p className="fs-1-2 bold">Take free, private, secure, unlimited, end-to-end encrypted, and decentralized notes in markdown/WYSIWYG editor. What else do you need? </p>
+          <p className="fs-1-2 bold">Take free, private, secure, unlimited, end-to-end encrypted, and decentralized notes in markdown editor.</p>
         </div>
         <div className="center-align mt-3rem">
           <Link className="btn btn-large oxford-blue-btn" to="/login" style={{ width: "240px" }}>

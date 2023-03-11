@@ -109,7 +109,7 @@ function Edit(props) {
   };
 
   const handleTagsData = () => {
-    const processedTagsArr = noteTags.length > 0 ? [...new Set(noteTags.split(",").map((b) => b.trim().toLowerCase()).filter(Boolean))] : "";
+    const processedTagsArr = noteTags.length > 0 ? [...new Set(noteTags.split(",").map((b) => b.trim().toLowerCase()).filter(Boolean))] : [];
 
     if(tagsData.length === 0) {
       processedTagsArr.forEach((pTagName) => {
@@ -172,7 +172,7 @@ function Edit(props) {
   }
 
   const loading = notes.isFetching;
-  console.log(tagsData);
+  // console.log(tagsData);
 
   return(
     <>

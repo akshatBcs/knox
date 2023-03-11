@@ -6,10 +6,10 @@ import generateUUID from './generateUUID';
 const myAppConfig = new AppConfig(["store_write"]);
 
 // if(process.env.NODE_ENV === "development") 
-myAppConfig.appDomain = "http://localhost:3000/";
+myAppConfig.appDomain = "http://localhost:3000";
 // else myAppConfig.appDomain = "https://drabkirn.cdadityang.xyz/knox";
 
-myAppConfig.redirectPath = "dash";
+myAppConfig.redirectPath = "";
 
 myAppConfig.home = "";
 

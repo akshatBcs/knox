@@ -9,20 +9,20 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if(userSession.isSignInPending()) {
+    if (userSession.isSignInPending()) {
       setLoading(true);
       userSession
         .handlePendingSignIn()
-          .then(() => {
-            window.location = appConfig.redirectURI();
-          })
-          .catch((err) => {
-            console.debug("Cannot sign you in", err);
-          });
+        .then(() => {
+          window.location = appConfig.redirectURI();
+        })
+        .catch((err) => {
+          console.debug("Cannot sign you in", err);
+        });
     }
   }, []);
 
-  if(isUserSignedIn) {
+  if (isUserSignedIn) {
     return <Redirect to="/dash" />;
   }
 
@@ -35,22 +35,25 @@ function Login() {
     const authOptions = {
       redirectTo: '/dash',
       onFinish: (authData) => {
-        window.location = appConfig.redirectURI();
+        window.location = 'dash';
+        // let userData = userSession.loadUserData();
+        // console.log(userData)
       },
       onCancel: () => {
         setLoading(false);
       },
-      manifestPath: `${ appConfig.redirectURI() }/manifest.json`,
+      manifestPath: `${appConfig.redirectURI()}/manifest.json`,
       appDetails: {
         name: 'knox',
-        icon: `${ appConfig.redirectURI().slice(0, (appConfig.redirectURI().length - 6)) }/icons/logo-180x180.png`,
+        icon: `${appConfig.redirectURI()}/icons/logo-180x180.png`,
       },
     };
+    console.log(authOptions)
 
     loginPopup(authOptions);
   };
 
-  return(
+  return (
     <React.Fragment>
 
       <section className="container">
@@ -61,8 +64,8 @@ function Login() {
             </p>
           </div>
           <div>
-            <button className="btn btn-large oxford-blue-btn" onClick={ (e) => handleLogin(e) } disabled={ loading } >
-              { loading ? "Signing you in..." : "Sign in with Blockstack" }
+            <button className="btn btn-large oxford-blue-btn" onClick={(e) => handleLogin(e)} disabled={loading} >
+              {loading ? "Signing you in..." : "Sign in with Blockstack"}
               <i className="material-icons right">fingerprint</i>
             </button>
           </div>
