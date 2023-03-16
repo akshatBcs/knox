@@ -33,13 +33,17 @@ function Show(props) {
   const [noteNotFound, setNoteNotFound] = useState(false);
   const [noteTags, setNoteTags] = useState("");
 
-  useEffect(() => {
+  useEffect( () => {
+
+    async function iffunc1(){
+
+    
     if(isUserSignedIn && !notesData) dispatch(fetchNotebookFile());
 
     if(isUserSignedIn && !tagsData) dispatch(fetchTagsFile());
 
     if(isUserSignedIn && notesData) {
-      const getCurrentNote = notesData.filter((note) => note.id === noteIdParam)[0];
+      const getCurrentNote = await notesData.filter((note) => note.id === noteIdParam)[0];
 
       if(getCurrentNote) {
         setNote(getCurrentNote);
@@ -51,7 +55,7 @@ function Show(props) {
     }
 
     if(isUserSignedIn && notesData && tagsData) {
-      const getCurrentNote = notesData.filter((note) => note.id === noteIdParam)[0];
+      const getCurrentNote = await notesData.filter((note) => note.id === noteIdParam)[0];
       const allTags = [];
 
       tagsData.forEach((tagData) => {
@@ -60,7 +64,8 @@ function Show(props) {
         }
       });
       setNoteTags(allTags);
-    }
+    }}
+    iffunc1();
   }, [notesData, tagsData]);
 
   const handleEasyMDE = (note) => {
@@ -75,10 +80,10 @@ function Show(props) {
     }, 2000);
   };
 
-  const handleNoteDelete = (deletedNote) => {
+  const handleNoteDelete = async (deletedNote) => {
     const confirmDeletion = window.confirm("Are you sure, you want to delete this note? it's irreversible!");
     if(confirmDeletion) {
-      const modifiedNotesData = notesData.filter((note) => note.id !== deletedNote.id);
+      const modifiedNotesData = await notesData.filter((note) => note.id !== deletedNote.id);
 
       handleTagsRemoveNote(deletedNote);
 

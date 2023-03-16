@@ -35,50 +35,55 @@ function Edit(props) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   useEffect(() => {
-    if(isUserSignedIn && !notesData) dispatch(fetchNotebookFile());
+    async function iffunc() {
 
-    if(isUserSignedIn && !tagsData) dispatch(fetchTagsFile());
 
-    if(isUserSignedIn && notesData) {
-      const getCurrentNote = notesData.filter((note) => note.id === noteIdParam)[0];
+      if (isUserSignedIn && !notesData) dispatch(fetchNotebookFile());
 
-      if(getCurrentNote) {
-        setNote(getCurrentNote);
-        setNoteTitle(getCurrentNote.title);
-      } else {
-        setNote(null);
-        setNoteNotFound(true);
+      if (isUserSignedIn && !tagsData) dispatch(fetchTagsFile());
+
+      if (isUserSignedIn && notesData) {
+        const getCurrentNote = await notesData.filter((note) => note.id === noteIdParam)[0];
+
+        if (getCurrentNote) {
+          setNote(getCurrentNote);
+          setNoteTitle(getCurrentNote.title);
+        } else {
+          setNote(null);
+          setNoteNotFound(true);
+        }
+      }
+
+      if (isUserSignedIn && notesData && tagsData) {
+        const getCurrentNote = await notesData.filter((note) => note.id === noteIdParam)[0];
+        const allTags = [];
+
+        tagsData.forEach((tagData) => {
+          if (tagData.note_ids.includes(getCurrentNote.id)) {
+            allTags.push(tagData.name);
+          }
+        });
+        setInitialNoteTags(allTags);
+        setNoteTags(allTags.join(", "));
       }
     }
-
-    if(isUserSignedIn && notesData && tagsData) {
-      const getCurrentNote = notesData.filter((note) => note.id === noteIdParam)[0];
-      const allTags = [];
-
-      tagsData.forEach((tagData) => {
-        if(tagData.note_ids.includes(getCurrentNote.id)) {
-          allTags.push(tagData.name);
-        }
-      });
-      setInitialNoteTags(allTags);
-      setNoteTags(allTags.join(", "));
-    }
+    iffunc();
   }, [notesData, tagsData]);
 
   useEffect(() => {
-    if(note) {
+    if (note) {
       handleEasyMDE(note);
     }
   }, [note]);
 
   const handleEasyMDE = (note) => {
     const noteContentElement = document.getElementById('noteContent');
-    const updatedEasyMDEOptions = {...easyMDEOptions, element: noteContentElement, initialValue: note.content, previewRender: (text) => customMarkdownRender(text)};
+    const updatedEasyMDEOptions = { ...easyMDEOptions, element: noteContentElement, initialValue: note.content, previewRender: (text) => customMarkdownRender(text) };
     const isMDEInited = document.querySelector('.editor-toolbar');
-    if(!isMDEInited) new EasyMDE(updatedEasyMDEOptions);
+    if (!isMDEInited) new EasyMDE(updatedEasyMDEOptions);
 
     const noteContentElement1 = document.getElementById('noteContent1');
-    const updatedEasyMDEOptions1 = {...easyMDEOptions, element: noteContentElement1, initialValue: note.content };
+    const updatedEasyMDEOptions1 = { ...easyMDEOptions, element: noteContentElement1, initialValue: note.content };
     const myEasyMDE1 = new EasyMDE(updatedEasyMDEOptions1);
     // myEasyMDE1.toTextArea();
 
@@ -94,7 +99,7 @@ function Edit(props) {
     e.preventDefault();
     const noteContentElement = document.getElementById('noteContent');
     notesData.forEach((eachNote) => {
-      if(eachNote.id === note.id) {
+      if (eachNote.id === note.id) {
         eachNote.title = noteTitle;
         eachNote.content = noteContentElement.value;
         eachNote.updated_at = new Date().toLocaleString();
@@ -108,10 +113,10 @@ function Edit(props) {
     setIsFormSubmitted(true);
   };
 
-  const handleTagsData = () => {
+  const handleTagsData = async () => {
     const processedTagsArr = noteTags.length > 0 ? [...new Set(noteTags.split(",").map((b) => b.trim().toLowerCase()).filter(Boolean))] : [];
 
-    if(tagsData.length === 0) {
+    if (tagsData.length === 0) {
       processedTagsArr.forEach((pTagName) => {
         const tagData = {
           id: generateUUID(),
@@ -121,11 +126,11 @@ function Edit(props) {
         tagsData.push(tagData);
       });
     } else {
-      if(initialNoteTags.length > processedTagsArr.length) {
-        let deletedTags = initialNoteTags.filter((nT) => !processedTagsArr.includes(nT));
+      if (initialNoteTags.length > processedTagsArr.length) {
+        let deletedTags = await initialNoteTags.filter((nT) => !processedTagsArr.includes(nT));
         deletedTags.forEach((dTagName) => {
           tagsData.forEach((tData) => {
-            if(tData.name === dTagName) {
+            if (tData.name === dTagName) {
               const idx = tData.note_ids.indexOf(note.id);
               tData.note_ids.splice(idx, 1);
             }
@@ -136,8 +141,8 @@ function Edit(props) {
       processedTagsArr.forEach((pTagName) => {
         let updatedPTagName = false;
         tagsData.forEach((tData) => {
-          if(tData.name === pTagName) {
-            if(!tData.note_ids.includes(note.id)) {
+          if (tData.name === pTagName) {
+            if (!tData.note_ids.includes(note.id)) {
               tData.note_ids.push(note.id);
               updatedPTagName = true;
               return;
@@ -147,7 +152,7 @@ function Edit(props) {
           }
         });
 
-        if(!updatedPTagName) {
+        if (!updatedPTagName) {
           const tagData = {
             id: generateUUID(),
             name: pTagName,
@@ -159,22 +164,22 @@ function Edit(props) {
     }
   };
 
-  if(!isUserSignedIn) {
+  if (!isUserSignedIn) {
     return <Redirect to="/login" />;
   }
 
-  if(noteNotFound) {
+  if (noteNotFound) {
     return <Redirect to="/dash" />
   }
 
-  if(isFormSubmitted) {
-    return <Redirect to={ "/show/" + note.id } />;
+  if (isFormSubmitted) {
+    return <Redirect to={"/show/" + note.id} />;
   }
 
   const loading = notes.isFetching;
   // console.log(tagsData);
 
-  return(
+  return (
     <>
       <section className="container mt-3rem">
         {
@@ -182,21 +187,21 @@ function Edit(props) {
             <Loading />
           ) : (
             <>
-              <form onSubmit={ (e) => handleSubmit(e) } className="form-tag" >
+              <form onSubmit={(e) => handleSubmit(e)} className="form-tag" >
                 <div className="form-tag-title-field">
-                  <input type="text" id="title" name="title" value={ noteTitle } onChange={ (e) => setNoteTitle(e.target.value) } minLength="3" maxLength="25" required placeholder="Note Title" className="validate" />
+                  <input type="text" id="title" name="title" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} minLength="3" maxLength="25" required placeholder="Note Title" className="validate" />
                 </div>
 
                 <div className="mt-3rem">
                   <textarea id="noteContent"></textarea>
                 </div>
 
-                <div style={ { height: "10px", display: "none" } }>
-                  <textarea id="noteContent1" style={ { visibility: "hidden" }}></textarea>
+                <div style={{ height: "10px", display: "none" }}>
+                  <textarea id="noteContent1" style={{ visibility: "hidden" }}></textarea>
                 </div>
 
                 <div className="form-tag-tag-field">
-                  <input type="text" id="tags" name="tags" value={ noteTags } onChange={ (e) => setNoteTags(e.target.value) } placeholder="Tag 1, Tag 2" className="validate" />
+                  <input type="text" id="tags" name="tags" value={noteTags} onChange={(e) => setNoteTags(e.target.value)} placeholder="Tag 1, Tag 2" className="validate" />
                 </div>
 
                 <div className="center-align mt-2rem">
@@ -208,7 +213,7 @@ function Edit(props) {
               </form>
 
               <div className="center-align mt-2rem">
-                <Link to={ "/show/" + note.id } className="btn apple-red-btn back-btn">
+                <Link to={"/show/" + note.id} className="btn apple-red-btn back-btn">
                   Cancel
                   <i className="material-icons right">backspace</i>
                 </Link>
