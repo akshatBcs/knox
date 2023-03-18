@@ -31,7 +31,10 @@ export const notebookFileName = "notebook_v1.json";
 
 export const tagsFileName = "tags_v1.json";
 
-
+// userStorage.deleteFile(notebookFileName).then(() => {
+//   // Handle any execution after file has been deleted
+//   console.log('deleted')
+// });
 
 export const easyMDEOptions = {
   autoDownloadFontAwesome: false,

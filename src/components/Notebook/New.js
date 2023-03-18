@@ -34,7 +34,7 @@ function New() {
 
     if(isUserSignedIn && !tagsData) dispatch(fetchTagsFile());
 
-    if(isUserSignedIn && notesData && tagsData) {
+    if(isUserSignedIn) {
       handleEasyMDE();
     }
   }, [notesData, tagsData]);
