@@ -16,7 +16,7 @@ function Home() {
           <h1>knox</h1>
         </div>
         <div>
-          <p className="fs-1-2 bold">Take free, private, secure, unlimited, end-to-end encrypted, and decentralized notes in markdown editor.</p>
+          <p className="fs-1-2 bold">Take free, private, secure, unlimited, end-to-end encrypted, and decentralized memo in markdown editor.</p>
         </div>
         <div className="center-align mt-3rem">
           <Link className="btn btn-large oxford-blue-btn" to="/login" style={{ width: "240px" }}>
@@ -114,9 +114,9 @@ function Home() {
       <section className="container mt-5rem">
         <div className="row flex-center-vh hide-on-small-only">
           <div className="col m6 s12">
-            <h3 className="center-align">Taking Notes</h3>
+            <h3 className="center-align">Taking memo</h3>
             <p className="fs-1-2">
-              Like we've mentioned, you can create unlimited notes using knox. You can write your notes in markdown or WYSIWYG(What You See Is What You Get) editor. Other features include code-snippets with syntax highlighting and keyboard shortcuts to navigate around the web app faster and more comfortable.
+              Like we've mentioned, you can create unlimited memos using knox. You can write your memo in markdown or WYSIWYG(What You See Is What You Get) editor. Other features include code-snippets with syntax highlighting and keyboard shortcuts to navigate around the web app faster and more comfortable.
             </p>
           </div>
 
@@ -131,17 +131,17 @@ function Home() {
           </div>
 
           <div className="col m6 s12">
-            <h3 className="center-align">Taking Notes</h3>
+            <h3 className="center-align">Taking memo</h3>
             <p className="fs-1-2">
-              Like we've mentioned, you can create unlimited notes using knox. You can write your notes in markdown or WYSIWYG(What You See Is What You Get) editor. Other features include code-snippets with syntax highlighting and keyboard shortcuts to navigate around the web app faster and more comfortable.
+              Like we've mentioned, you can create unlimited memos using knox. You can write your memo in markdown or WYSIWYG(What You See Is What You Get) editor. Other features include code-snippets with syntax highlighting and keyboard shortcuts to navigate around the web app faster and more comfortable.
             </p>
           </div>
         </div>
 
-        <hr />
+        {/* <hr /> */}
       </section>
 
-      <section className="container mt-5rem">
+      {/* <section className="container mt-5rem">
         <div className="row flex-center-vh">
           <div className="col m6 s12">
             <img src="/images/illustrations/lockin.svg" alt="lockin illustration" className="responsive-img" />
@@ -150,17 +150,17 @@ function Home() {
           <div className="col m6 s12">
             <h3 className="center-align">No Lock-in's</h3>
             <p className="fs-1-2">
-              One question to ask, what if knox stops working from tomorrow? Will I lose access to all my notes?
+              One question to ask, what if knox stops working from tomorrow? Will I lose access to all my memo?
             </p>
             <p className="fs-1-2">
-              Simple answer, NO. knox doesn't store any of your data, you choose where to store your data(defaults to your Blockstack). You can access your notes with alternative interfaces even if knox stops working from tomorrow.
+              Simple answer, NO. knox doesn't store any of your data, you choose where to store your data(defaults to your Blockstack). You can access your memos with alternative interfaces even if knox stops working from tomorrow.
             </p>
           </div>
         </div>
 
-        <hr />
-      </section>
-      <section className="container mt-5rem">
+        {/* <hr /> */}
+      {/* </section> */} 
+      {/* <section className="container mt-5rem">
         <div className="row flex-center-vh hide-on-small-only">
           <div className="col m6 s12">
             <h3 className="center-align">Set it free</h3>
@@ -187,8 +187,8 @@ function Home() {
               . So, no hidden data hogs, and we feel like a free bird.
             </p>
           </div>
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
 
       <section className="container mt-5rem mb-5rem">
         <div className="center-align">

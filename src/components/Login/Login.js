@@ -60,7 +60,7 @@ function Login() {
         <div className="login-section center-align">
           <div>
             <p className="italic">
-              Get started by signing in with Blockstack. If you don't have one, you can create a new one. It's super fast and straightforward.
+              Get started by signing in with Blockstack. If you don't have an account, you can create a new one.
             </p>
           </div>
           <div>

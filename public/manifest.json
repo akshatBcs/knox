@@ -1,7 +1,7 @@
 {
   "short_name": "knox",
   "name": "knox",
-  "description": "Take private, E2E notes on the Go.",
+  "description": "Take private, E2E memo on the Go.",
   "icons": [
     {
       "src": "favicon.ico",

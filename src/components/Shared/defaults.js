@@ -9,8 +9,6 @@ const myAppConfig = new AppConfig(["store_write"]);
 // myAppConfig.appDomain = "http://localhost:3000";
 myAppConfig.appDomain = "https://knox-notes.vercel.app";
 
-// else myAppConfig.appDomain = "https://drabkirn.cdadityang.xyz/knox";
-
 myAppConfig.redirectPath = "";
 
 myAppConfig.home = "";
@@ -40,7 +38,7 @@ export const easyMDEOptions = {
   autoDownloadFontAwesome: false,
   forceSync: true,
   indentWithTabs: false,
-  placeholder: "Get started by taking your note here...",
+  placeholder: "Get started by taking your memo here...",
   showIcons: ["strikethrough", "code", "table", "horizontal-rule"],
   hideIcons: ["side-by-side"],
   renderingConfig: {

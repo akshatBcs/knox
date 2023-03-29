@@ -189,7 +189,7 @@ function Edit(props) {
             <>
               <form onSubmit={(e) => handleSubmit(e)} className="form-tag" >
                 <div className="form-tag-title-field">
-                  <input type="text" id="title" name="title" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} minLength="3" maxLength="25" required placeholder="Note Title" className="validate" />
+                  <input type="text" id="title" name="title" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} minLength="3" maxLength="25" required placeholder="Memo Title" className="validate" />
                 </div>
 
                 <div className="mt-3rem">

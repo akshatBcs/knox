@@ -141,14 +141,14 @@ function Dash() {
           ) : (
             <>
               <div className="center-align">
-                <h2>Your notes</h2>
+                <h2>Your Memos</h2>
               </div>
 
               {
                 notesData.length === 0 ? (
                   <div className="row">
                     <div className="col m6 offset-m3 s12">
-                      <p className="fs-1-1">start writing a new note by click on + icon from bottom right...</p>
+                      <p className="fs-1-1">start writing a new memo by click on + icon from bottom right...</p>
                       <img src="/images/illustrations/lonely.svg" alt="lonely illustration" className="responsive-img" />
                     </div>
                   </div>
